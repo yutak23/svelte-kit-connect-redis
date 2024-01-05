@@ -1,10 +1,10 @@
 # svelte-kit-connect-redis
 
+**svelte-kit-connect-redis** provides Redis session storage for [svelte-kit-sessions](https://www.npmjs.com/package/svelte-kit-sessions).
+
 [![npm](https://img.shields.io/npm/v/svelte-kit-connect-redis.svg)](https://www.npmjs.com/package/svelte-kit-connect-redis)
 [![test](https://github.com/yutak23/svelte-kit-connect-redis/actions/workflows/test.yaml/badge.svg)](https://github.com/yutak23/svelte-kit-connect-redis/actions/workflows/test.yaml)
 ![style](https://img.shields.io/badge/code%20style-airbnb-ff5a5f.svg)
-
-**svelte-kit-connect-redis** provides Redis session storage for [svelte-kit-sessions](https://www.npmjs.com/package/svelte-kit-sessions).
 
 ## Installation
 
