@@ -68,14 +68,14 @@ import { sveltekitSessionHandle } from 'svelte-kit-sessions';
 import RedisStore from 'sveltekit-connect-redis';
 import { Redis } from 'ioredis';
 
+const client = new Redis({
+	host: '{your redis host}',
+	port: 6379
+});
+
 export const handle: Handle = sveltekitSessionHandle({
 	secret: 'secret',
-	store: new RedisStore({
-		client: new Redis({
-			host: '{your redis host}',
-			port: 6379
-		})
-	})
+	store: new RedisStore({ client })
 });
 ```
 
@@ -126,6 +126,27 @@ interface Serializer {
 #### ttl
 
 When `svelte-kit-sessions` calls a method of the store (the `set` function), ttl(milliseconds) is passed to it. However, if the cookie options `expires` and `maxAge` are not set, the ttl passed will be _Infinity_.
+
+```ts
+// `sveltekit-connect-redis` implementation excerpts
+const ONE_DAY_IN_SECONDS = 86400;
+export default class RedisStore implements Store {
+	constructor(options: RedisStoreOptions) {
+		this.ttl = options.ttl || ONE_DAY_IN_SECONDS * 1000;
+	}
+
+	ttl: number;
+
+	async set(id: string, storeData: SessionStoreData, ttl: number): Promise<void> {
+		// omission ...
+		if (ttl !== Infinity) {
+			await this.client.set(key, serialized, { PX: ttl }); // if `ttl` passed as argument is *not* Infinity, use the argument `ttl` as it is.
+			return;
+		}
+		await this.client.set(key, serialized, { PX: this.ttl }); // if `ttl` passed as argument is *not* Infinity, use `options.ttl` or default.
+	}
+}
+```
 
 If the ttl passed is _Infinity_, the ttl to be set can be set with this option. The unit is milliseconds.
 
