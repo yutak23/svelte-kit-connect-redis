@@ -15,8 +15,6 @@ jobs:
     services:
       redis:
         image: redis:7.2.1-alpine3.18
-      environment:
-        TZ: 'Asia/Tokyo'
       ports:
         - 6379:6379
       srh:
