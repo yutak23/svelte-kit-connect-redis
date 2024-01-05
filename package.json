@@ -1,6 +1,6 @@
 {
 	"name": "svelte-kit-connect-redis",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"author": "yutak23 <yuta.katayama.23+github@gmail.com> (https://github.com/yutak23)",
 	"repository": {
 		"type": "git",
