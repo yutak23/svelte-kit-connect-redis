@@ -20,6 +20,7 @@
 	"scripts": {
 		"build": "rm -rf ./dist && tsc",
 		"test": "vitest run --coverage",
+		"prepublishOnly": "npm run build",
 		"lint": "eslint . --ext .cjs,.mjs,.js,.ts,.cts,.mts",
 		"lint:fix": "eslint . --ext .cjs,.mjs,.js,.ts,.cts,.mts --fix",
 		"format": "prettier -c .",
