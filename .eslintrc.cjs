@@ -24,5 +24,5 @@ module.exports = {
 		'import/no-extraneous-dependencies': ['warn', { packageDir: './' }],
 		'@typescript-eslint/no-throw-literal': 'off'
 	},
-	ignorePatterns: ['esm', 'cjs', 'node_modules']
+	ignorePatterns: ['dist', 'node_modules']
 };
