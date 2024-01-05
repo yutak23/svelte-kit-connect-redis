@@ -127,6 +127,8 @@ interface Serializer {
 
 When `svelte-kit-sessions` calls a method of the store (the `set` function), ttl(milliseconds) is passed to it. However, if the cookie options `expires` and `maxAge` are not set, the ttl passed will be _Infinity_.
 
+If the ttl passed is _Infinity_, the ttl to be set can be set with this option. The unit is milliseconds.
+
 ```ts
 // `sveltekit-connect-redis` implementation excerpts
 const ONE_DAY_IN_SECONDS = 86400;
@@ -147,8 +149,6 @@ export default class RedisStore implements Store {
 	}
 }
 ```
-
-If the ttl passed is _Infinity_, the ttl to be set can be set with this option. The unit is milliseconds.
 
 ## License
 
