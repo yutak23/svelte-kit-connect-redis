@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import type { SessionCookieOptions } from 'svelte-kit-sessions';
-import * as ioredis from 'ioredis';
-import * as redis from 'redis';
+import { Redis } from 'ioredis';
+import { createClient } from 'redis';
 import RedisStore from '../src/index.js';
 
 declare module 'svelte-kit-sessions' {
@@ -19,7 +19,7 @@ const dumyCookieOptions: SessionCookieOptions = {
 
 describe('Test RedisStore', () => {
 	describe('client is ioredis', () => {
-		const client = new ioredis.Redis({
+		const client = new Redis({
 			host: 'localhost',
 			port: 6379,
 			db: 0
@@ -95,7 +95,7 @@ describe('Test RedisStore', () => {
 	});
 
 	describe('client is redis', async () => {
-		const client = redis.createClient({
+		const client = createClient({
 			url: 'redis://localhost:6379/0'
 		});
 		const clientConnection = await client.connect();
