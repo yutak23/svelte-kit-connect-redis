@@ -145,7 +145,7 @@ export default class RedisStore implements Store {
 			await this.client.set(key, serialized, { PX: ttl }); // if `ttl` passed as argument is *not* Infinity, use the argument `ttl` as it is.
 			return;
 		}
-		await this.client.set(key, serialized, { PX: this.ttl }); // if `ttl` passed as argument is *not* Infinity, use `options.ttl` or default.
+		await this.client.set(key, serialized, { PX: this.ttl }); // if `ttl` passed as argument is Infinity, use `options.ttl` or default.
 	}
 }
 ```
