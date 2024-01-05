@@ -1,10 +1,10 @@
 {
-	"name": "sveltekit-connect-redis",
+	"name": "svelte-kit-connect-redis",
 	"version": "0.0.1",
 	"author": "yutak23 <yuta.katayama.23+github@gmail.com> (https://github.com/yutak23)",
 	"repository": {
 		"type": "git",
-		"url": "git+ssh://git@github.com:yutak23/sveltekit-connect-redis.git"
+		"url": "git+ssh://git@github.com:yutak23/svelte-kit-connect-redis.git"
 	},
 	"license": "MIT",
 	"type": "module",
