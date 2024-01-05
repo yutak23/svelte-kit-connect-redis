@@ -17,14 +17,6 @@ jobs:
         image: redis:7.2.1-alpine3.18
         ports:
           - 6379:6379
-      srh:
-        image: hiett/serverless-redis-http:latest
-        env:
-          SRH_MODE: env
-          SRH_TOKEN: example_token
-          SRH_CONNECTION_STRING: 'redis://redis:6379'
-        ports:
-          - '8079:80'
     strategy:
       matrix:
         node: ['18', '20']
