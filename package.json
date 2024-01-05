@@ -27,6 +27,8 @@
 		"ncu": "ncu"
 	},
 	"dependencies": {
+		"ioredis": "^5.3.2",
+		"redis": "^4.6.12",
 		"svelte-kit-sessions": "^0.0.5"
 	},
 	"devDependencies": {
@@ -36,17 +38,14 @@
 		"@types/node": "^18.19.4",
 		"@typescript-eslint/eslint-plugin": "^6.17.0",
 		"@typescript-eslint/parser": "^6.17.0",
-		"@upstash/redis": "^1.27.1",
 		"@vitest/coverage-v8": "^1.1.1",
 		"eslint": "^8.56.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-airbnb-typescript": "^17.1.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.29.1",
-		"ioredis": "^5.3.2",
 		"npm-check-updates": "^16.14.12",
 		"prettier": "^3.1.1",
-		"redis": "^4.6.12",
 		"typescript": "^5.3.3",
 		"vitest": "^1.1.1"
 	},

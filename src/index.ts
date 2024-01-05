@@ -1,7 +1,4 @@
 import type { SessionStoreData, Store } from 'svelte-kit-sessions';
-import * as upstashRedis from '@upstash/redis';
-import * as upstashRedisCloudflare from '@upstash/redis/cloudflare';
-import * as upstashRedisFastly from '@upstash/redis/fastly';
 import * as ioredis from 'ioredis';
 import * as redis from 'redis';
 
@@ -11,12 +8,7 @@ interface Serializer {
 }
 
 interface RedisStoreOptions {
-	client:
-		| upstashRedis.Redis
-		| upstashRedisCloudflare.Redis
-		| upstashRedisFastly.Redis
-		| ioredis.Redis
-		| redis.RedisClientType;
+	client: ioredis.Redis | redis.RedisClientType;
 	prefix?: string;
 	serializer?: Serializer;
 	ttl?: number;
@@ -32,12 +24,7 @@ export default class RedisStore implements Store {
 		this.ttl = options.ttl || ONE_DAY_IN_SECONDS * 1000;
 	}
 
-	client:
-		| upstashRedis.Redis
-		| upstashRedisCloudflare.Redis
-		| upstashRedisFastly.Redis
-		| ioredis.Redis
-		| redis.RedisClientType;
+	client: ioredis.Redis | redis.RedisClientType;
 
 	prefix: string;
 
@@ -51,16 +38,6 @@ export default class RedisStore implements Store {
 
 	async get(id: string): Promise<SessionStoreData | null> {
 		const key = this.prefix + id;
-
-		if (
-			this.client instanceof upstashRedis.Redis ||
-			this.client instanceof upstashRedisCloudflare.Redis ||
-			this.client instanceof upstashRedisFastly.Redis
-		) {
-			const storeData = await this.client.get<SessionStoreData | undefined>(key);
-			return storeData || null;
-		}
-
 		const storeData = (await this.client.get(key)) as string;
 		return storeData ? this.serializer.parse(storeData) : null;
 	}
@@ -71,30 +48,11 @@ export default class RedisStore implements Store {
 
 		// Infinite time does not support, so it is implemented separately.
 		if (ttl !== Infinity) {
-			if (
-				this.client instanceof upstashRedis.Redis ||
-				this.client instanceof upstashRedisCloudflare.Redis ||
-				this.client instanceof upstashRedisFastly.Redis
-			) {
-				await this.client.set(key, serialized, { px: ttl });
-				return;
-			}
-
 			if (this.client instanceof ioredis.Redis) {
 				await this.client.set(key, serialized, 'PX', ttl);
 				return;
 			}
-
 			await this.client.set(key, serialized, { PX: ttl });
-			return;
-		}
-
-		if (
-			this.client instanceof upstashRedis.Redis ||
-			this.client instanceof upstashRedisCloudflare.Redis ||
-			this.client instanceof upstashRedisFastly.Redis
-		) {
-			await this.client.set(key, serialized, { px: this.ttl });
 			return;
 		}
 
@@ -102,7 +60,6 @@ export default class RedisStore implements Store {
 			await this.client.set(key, serialized, 'PX', this.ttl);
 			return;
 		}
-
 		await this.client.set(key, serialized, { PX: this.ttl });
 	}
 
