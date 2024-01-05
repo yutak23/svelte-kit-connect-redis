@@ -8,9 +8,24 @@ interface Serializer {
 }
 
 interface RedisStoreOptions {
+	/**
+	 * An instance of [`redis`](https://www.npmjs.com/package/redis) or [`ioredis`](https://www.npmjs.com/package/ioredis).
+	 */
 	client: ioredis.Redis | redis.RedisClientType;
+	/**
+	 * The prefix of the key in redis.
+	 */
 	prefix?: string;
+	/**
+	 * The serializer to use.
+	 * @default JSON
+	 */
 	serializer?: Serializer;
+	/**
+	 * Time to live in milliseconds.
+	 * This ttl to be used if ttl is _Infinity_ when used from `svelte-kit-sessions`
+	 * @default 86400 * 1000
+	 */
 	ttl?: number;
 }
 
@@ -19,7 +34,7 @@ const ONE_DAY_IN_SECONDS = 86400;
 export default class RedisStore implements Store {
 	constructor(options: RedisStoreOptions) {
 		this.client = options.client;
-		this.prefix = options.prefix || '';
+		this.prefix = options.prefix || 'sess:';
 		this.serializer = options.serializer || JSON;
 		this.ttl = options.ttl || ONE_DAY_IN_SECONDS * 1000;
 	}
