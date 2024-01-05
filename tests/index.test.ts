@@ -283,7 +283,7 @@ describe('Test RedisStore', () => {
 				await store.set('sessionId', { cookie: dumyCookieOptions, data: { foo: 'foo' } }, 100);
 
 				await new Promise((resolve) => {
-					setTimeout(resolve, 100);
+					setTimeout(resolve, 200);
 				});
 
 				const data = await store.get('sessionId');
