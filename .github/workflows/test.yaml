@@ -15,8 +15,10 @@ jobs:
     services:
       redis:
         image: redis:7.2.1-alpine3.18
-      ports:
-        - 6379:6379
+        environment:
+          TZ: 'Asia/Tokyo'
+        ports:
+          - 6379:6379
       srh:
         image: hiett/serverless-redis-http:latest
         env:

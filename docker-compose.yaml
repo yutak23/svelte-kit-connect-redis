@@ -3,6 +3,8 @@ services:
   redis:
     image: redis:7.2.1-alpine3.18
     container_name: redis
+    environment:
+      TZ: 'Asia/Tokyo'
     volumes:
       - ./data/redis:/data
     ports:
