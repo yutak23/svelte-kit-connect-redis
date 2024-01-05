@@ -14,6 +14,7 @@ interface RedisStoreOptions {
 	client: ioredis.Redis | redis.RedisClientType;
 	/**
 	 * The prefix of the key in redis.
+	 * @default 'sess:'
 	 */
 	prefix?: string;
 	/**
@@ -39,10 +40,21 @@ export default class RedisStore implements Store {
 		this.ttl = options.ttl || ONE_DAY_IN_SECONDS * 1000;
 	}
 
+	/**
+	 * An instance of [`redis`](https://www.npmjs.com/package/redis) or [`ioredis`](https://www.npmjs.com/package/ioredis).
+	 */
 	client: ioredis.Redis | redis.RedisClientType;
 
+	/**
+	 * The prefix of the key in redis.
+	 * @default 'sess:'
+	 */
 	prefix: string;
 
+	/**
+	 * The serializer to use.
+	 * @default JSON
+	 */
 	serializer: Serializer;
 
 	/**
