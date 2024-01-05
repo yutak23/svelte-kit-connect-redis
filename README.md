@@ -1,14 +1,14 @@
 # svelte-kit-connect-redis
 
-[![npm](https://img.shields.io/npm/v/sveltekit-connect-redis.svg)](https://www.npmjs.com/package/sveltekit-connect-redis)
-[![test](https://github.com/yutak23/sveltekit-connect-redis/actions/workflows/test.yaml/badge.svg)](https://github.com/yutak23/sveltekit-connect-redis/actions/workflows/test.yaml)
+[![npm](https://img.shields.io/npm/v/svelte-kit-connect-redis.svg)](https://www.npmjs.com/package/svelte-kit-connect-redis)
+[![test](https://github.com/yutak23/svelte-kit-connect-redis/actions/workflows/test.yaml/badge.svg)](https://github.com/yutak23/svelte-kit-connect-redis/actions/workflows/test.yaml)
 ![style](https://img.shields.io/badge/code%20style-airbnb-ff5a5f.svg)
 
-**sveltekit-connect-redis** provides Redis session storage for [svelte-kit-sessions](https://www.npmjs.com/package/svelte-kit-sessions).
+**svelte-kit-connect-redis** provides Redis session storage for [svelte-kit-sessions](https://www.npmjs.com/package/svelte-kit-sessions).
 
 ## Installation
 
-**sveltekit-connect-redis** requires [`svelte-kit-sessions`](https://www.npmjs.com/package/svelte-kit-sessions) to installed and one of the following compatible Redis clients:
+**svelte-kit-connect-redis** requires [`svelte-kit-sessions`](https://www.npmjs.com/package/svelte-kit-sessions) to installed and one of the following compatible Redis clients:
 
 - [`redis`](https://www.npmjs.com/package/redis)
 - [`ioredis`](https://www.npmjs.com/package/ioredis)
@@ -16,26 +16,26 @@
 Install with `redis`:
 
 ```console
-$ npm install redis sveltekit-connect-redis svelte-kit-sessions
+$ npm install redis svelte-kit-connect-redis svelte-kit-sessions
 
-$ yarn add redis sveltekit-connect-redis svelte-kit-sessions
+$ yarn add redis svelte-kit-connect-redis svelte-kit-sessions
 
-$ pnpm add redis sveltekit-connect-redis svelte-kit-sessions
+$ pnpm add redis svelte-kit-connect-redis svelte-kit-sessions
 ```
 
 Install with `ioredis`:
 
 ```console
-$ npm install ioredis sveltekit-connect-redis svelte-kit-sessions
+$ npm install ioredis svelte-kit-connect-redis svelte-kit-sessions
 
-$ yarn add ioredis sveltekit-connect-redis svelte-kit-sessions
+$ yarn add ioredis svelte-kit-connect-redis svelte-kit-sessions
 
-$ pnpm add ioredis sveltekit-connect-redis svelte-kit-sessions
+$ pnpm add ioredis svelte-kit-connect-redis svelte-kit-sessions
 ```
 
 ## Usage
 
-`sveltekit-connect-redis` can be used as a custom store for `svelte-kit-sessions` as follows.
+`svelte-kit-connect-redis` can be used as a custom store for `svelte-kit-sessions` as follows.
 
 **Note** For more information about `svelte-kit-sessions`, see https://www.npmjs.com/package/svelte-kit-sessions.
 
@@ -45,7 +45,7 @@ $ pnpm add ioredis sveltekit-connect-redis svelte-kit-sessions
 // src/hooks.server.ts
 import type { Handle } from '@sveltejs/kit';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
-import RedisStore from 'sveltekit-connect-redis';
+import RedisStore from 'svelte-kit-connect-redis';
 import { createClient } from 'redis';
 
 const client = redis.createClient({
@@ -65,7 +65,7 @@ export const handle: Handle = sveltekitSessionHandle({
 // src/hooks.server.ts
 import type { Handle } from '@sveltejs/kit';
 import { sveltekitSessionHandle } from 'svelte-kit-sessions';
-import RedisStore from 'sveltekit-connect-redis';
+import RedisStore from 'svelte-kit-connect-redis';
 import { Redis } from 'ioredis';
 
 const client = new Redis({
@@ -82,7 +82,7 @@ export const handle: Handle = sveltekitSessionHandle({
 ## API
 
 ```ts
-import RedisStore from 'sveltekit-connect-redis';
+import RedisStore from 'svelte-kit-connect-redis';
 
 new RedisStore(options);
 ```
@@ -130,7 +130,7 @@ When `svelte-kit-sessions` calls a method of the store (the `set` function), ttl
 If the ttl passed is _Infinity_, the ttl to be set can be set with this option. The unit is milliseconds.
 
 ```ts
-// `sveltekit-connect-redis` implementation excerpts
+// `svelte-kit-connect-redis` implementation excerpts
 const ONE_DAY_IN_SECONDS = 86400;
 export default class RedisStore implements Store {
 	constructor(options: RedisStoreOptions) {
