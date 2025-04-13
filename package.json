@@ -29,7 +29,7 @@
 		"ncu": "ncu"
 	},
 	"dependencies": {
-		"ioredis": "^5.6.0",
+		"ioredis": "^5.6.1",
 		"redis": "^4.7.0",
 		"svelte-kit-sessions": "^0.4.0"
 	},
@@ -46,7 +46,7 @@
 		"eslint-config-airbnb-typescript": "^17.1.0",
 		"eslint-config-prettier": "^9.1.0",
 		"eslint-plugin-import": "^2.31.0",
-		"npm-check-updates": "^17.1.16",
+		"npm-check-updates": "^17.1.18",
 		"prettier": "^3.5.3",
 		"typescript": "^5.8.3",
 		"vitest": "^1.6.1"
