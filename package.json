@@ -30,7 +30,7 @@
 	},
 	"dependencies": {
 		"ioredis": "^5.7.0",
-		"redis": "^4.7.1",
+		"redis": "^5.8.2",
 		"svelte-kit-sessions": "^0.4.0"
 	},
 	"devDependencies": {
