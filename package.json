@@ -29,7 +29,7 @@
 		"ncu": "ncu"
 	},
 	"dependencies": {
-		"ioredis": "^5.7.0",
+		"ioredis": "^5.8.0",
 		"redis": "^4.7.1",
 		"svelte-kit-sessions": "^0.4.0"
 	},
