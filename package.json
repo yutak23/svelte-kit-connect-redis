@@ -29,7 +29,7 @@
 		"ncu": "ncu"
 	},
 	"dependencies": {
-		"ioredis": "^5.9.1",
+		"ioredis": "^5.9.2",
 		"redis": "^4.7.1",
 		"svelte-kit-sessions": "^0.4.0"
 	},
@@ -47,7 +47,7 @@
 		"eslint-config-prettier": "^9.1.2",
 		"eslint-plugin-import": "^2.32.0",
 		"npm-check-updates": "^17.1.18",
-		"prettier": "^3.7.4",
+		"prettier": "^3.8.0",
 		"typescript": "^5.9.3",
 		"vitest": "^1.6.1"
 	},
